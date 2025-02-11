@@ -56,7 +56,12 @@ function ResponsiveAppBar() {
           disableGutters
         >
           <Box>
-            <img src={companyLogo} height={40} alt={"Helpee"} loading="lazy" />
+            <img
+              src={companyLogo}
+              style={{ height: "40px" }}
+              alt={"Helpee"}
+              loading="lazy"
+            />
           </Box>
 
           {/* <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
