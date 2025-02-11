@@ -4,7 +4,7 @@ const Display: React.FC = () => {
   const { expression, result } = useCalculatorStore();
 
   return (
-    <div className="w-full p-3 bg-gray-200 rounded-md text-right text-xl font-semibold">
+    <div className="w-full p-4 bg-gray-100 rounded-lg text-right text-2xl font-semibold text-gray-800 shadow-inner">
       {expression || result}
     </div>
   );

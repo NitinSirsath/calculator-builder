@@ -38,14 +38,14 @@ const DraggableButton: React.FC<DraggableButtonProps> = ({
 
   const handleClick = () => {
     if (label === "=") {
-      evaluateExpression(); // Perform calculation
+      evaluateExpression();
     } else if (label === "C") {
-      clearExpression(); // Clear the display
+      clearExpression();
     } else {
-      updateExpression(label); // Add to the expression
+      updateExpression(label);
     }
   };
-  console.log("label", label);
+
   return (
     <motion.div
       ref={(node) => ref(drop(node))}
@@ -54,13 +54,13 @@ const DraggableButton: React.FC<DraggableButtonProps> = ({
       className="relative"
     >
       <button
-        className="bg-blue-500 text-white p-3 rounded-md shadow-md w-full text-lg hover:bg-blue-600 transition-all"
+        className="bg-blue-500 text-white p-4 rounded-lg shadow-md w-full text-lg font-semibold hover:bg-blue-600 transition-all"
         onClick={handleClick}
       >
         {label}
       </button>
       <button
-        className="absolute top-0 right-0 bg-red-500 text-white text-xs rounded hover:bg-red-600 transition-all"
+        className="absolute -top-1 -right-1 bg-red-500 text-white text-xs w-4 px-2 py-1 rounded-full hover:bg-red-600 transition-all"
         onClick={() => removeComponent(id)}
       >
         X

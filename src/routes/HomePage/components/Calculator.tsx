@@ -10,9 +10,6 @@ const Calculator: React.FC = () => {
   const [{ isOver }, drop] = useDrop({
     accept: "COMPONENT",
     drop: (item: { id: number; type: string; label?: string }) => {
-      if (!item.label) {
-        console.error("Dropped item is missing a label:", item);
-      }
       addComponent({
         id: Date.now(),
         type: item.type as "button",
@@ -26,25 +23,29 @@ const Calculator: React.FC = () => {
 
   return (
     <motion.div
-      className="p-4 border rounded-lg w-80 min-h-[300px] bg-gray-100 shadow-lg"
+      className="p-6 border border-gray-200 rounded-lg w-80 min-h-[350px] bg-white/80 shadow-xl backdrop-blur-lg"
       initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.3 }}
     >
-      <h2 className="text-lg font-bold mb-2">Your Calculator</h2>
+      <h2 className="text-xl font-semibold text-gray-800 mb-4 text-center">
+        Your Calculator
+      </h2>
       <div
         ref={drop}
-        className={`p-4 min-h-[200px] ${isOver ? "bg-gray-300" : "bg-white"}`}
+        className={`p-4 min-h-[250px] rounded-lg ${
+          isOver ? "bg-gray-200" : "bg-white"
+        } shadow-inner`}
       >
         <Display />
-        <motion.div className="grid grid-cols-4 gap-2 mt-4">
+        <motion.div className="grid grid-cols-4 gap-3 mt-4">
           <AnimatePresence>
             {components.map((component, index) =>
               component.type === "button" ? (
                 <DraggableButton
                   key={component.id}
                   id={component.id}
-                  label={component.label} // Ensure label is passed correctly
+                  label={component.label!}
                   index={index}
                 />
               ) : null

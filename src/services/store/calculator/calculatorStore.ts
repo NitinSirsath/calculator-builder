@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
 export type ComponentType = "button" | "display";
 
@@ -20,41 +21,54 @@ interface CalculatorState {
   moveComponent: (dragIndex: number, hoverIndex: number) => void;
 }
 
-const useCalculatorStore = create<CalculatorState>((set) => ({
-  components: [],
-  expression: "",
-  result: "0",
-  addComponent: (component) =>
-    set((state) => {
-      if (!component.label) {
-        console.error("Label is missing when adding a component:", component);
-      }
-      return { components: [...state.components, component] };
+const useCalculatorStore = create<CalculatorState>()(
+  persist(
+    (set) => ({
+      components: [],
+      expression: "",
+      result: "0",
+      addComponent: (component) =>
+        set((state) => {
+          if (!component.label) {
+            console.error(
+              "Label is missing when adding a component:",
+              component
+            );
+          }
+          return { components: [...state.components, component] };
+        }),
+      removeComponent: (id) =>
+        set((state) => ({
+          components: state.components.filter((c) => c.id !== id),
+        })),
+      updateExpression: (value) =>
+        set((state) => ({
+          expression: state.expression + value,
+        })),
+      evaluateExpression: () =>
+        set((state) => {
+          try {
+            return {
+              result: eval(state.expression).toString(),
+              expression: "",
+            };
+          } catch (error) {
+            return { result: "Error", expression: "" };
+          }
+        }),
+      clearExpression: () => set({ expression: "", result: "0" }),
+      moveComponent: (dragIndex, hoverIndex) =>
+        set((state) => {
+          const updatedComponents = [...state.components];
+          const [draggedComponent] = updatedComponents.splice(dragIndex, 1);
+          updatedComponents.splice(hoverIndex, 0, draggedComponent);
+          return { components: updatedComponents };
+        }),
     }),
-  removeComponent: (id) =>
-    set((state) => ({
-      components: state.components.filter((c) => c.id !== id),
-    })),
-  updateExpression: (value) =>
-    set((state) => ({
-      expression: state.expression + value,
-    })),
-  evaluateExpression: () =>
-    set((state) => {
-      try {
-        return { result: eval(state.expression).toString(), expression: "" };
-      } catch (error) {
-        return { result: "Error", expression: "" };
-      }
-    }),
-  clearExpression: () => set({ expression: "", result: "0" }),
-  moveComponent: (dragIndex, hoverIndex) =>
-    set((state) => {
-      const updatedComponents = [...state.components];
-      const [draggedComponent] = updatedComponents.splice(dragIndex, 1);
-      updatedComponents.splice(hoverIndex, 0, draggedComponent);
-      return { components: updatedComponents };
-    }),
-}));
+    {
+      name: "calculator-data",
+    }
+  )
+);
 
 export default useCalculatorStore;
