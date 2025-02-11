@@ -1,31 +1,17 @@
-import { Button, Stack, TextField } from "@mui/material";
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
+import Calculator from "./components/Calculator";
+import Sidebar from "./components/Sidebar";
 
 const HomePage = () => {
   return (
     <div>
-      {/* <h1 className="text-3xl font-bold underline">Hello world!</h1> */}
-      <Stack direction={"row"} gap={2}>
-        <Button variant="contained" color="primary">
-          contained
-        </Button>
-        <Button variant="outlined" color="error">
-          outlined
-        </Button>
-        <Button color="success" variant="text">
-          text
-        </Button>
-      </Stack>
-      <Stack direction={"row"} gap={2}>
-        <TextField
-          label="Default title 1"
-          error={true}
-          helperText={"this is error"}
-          variant="filled"
-          size="small"
-        />
-        <TextField label="Default title 2" variant="outlined" size="small" />
-        <TextField label="Default title 3" variant="standard" size="small" />
-      </Stack>
+      <DndProvider backend={HTML5Backend}>
+        <div className="flex gap-6 p-6">
+          <Sidebar />
+          <Calculator />
+        </div>
+      </DndProvider>
     </div>
   );
 };
