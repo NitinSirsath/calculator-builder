@@ -3,17 +3,19 @@ import { useDrag } from "react-dnd";
 interface DraggableComponentProps {
   id: string;
   type: "button" | "display";
+  label?: string;
   children: React.ReactNode;
 }
 
 const DraggableComponent: React.FC<DraggableComponentProps> = ({
   id,
   type,
+  label,
   children,
 }) => {
   const [{ isDragging }, drag] = useDrag(() => ({
     type: "COMPONENT",
-    item: { id, type },
+    item: { id, type, label },
     collect: (monitor) => ({
       isDragging: !!monitor.isDragging(),
     }),

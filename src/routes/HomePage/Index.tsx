@@ -5,14 +5,12 @@ import Sidebar from "./components/Sidebar";
 
 const HomePage = () => {
   return (
-    <div>
-      <DndProvider backend={HTML5Backend}>
-        <div className="flex gap-6 p-6">
-          <Sidebar />
-          <Calculator />
-        </div>
-      </DndProvider>
-    </div>
+    <DndProvider backend={HTML5Backend}>
+      <div className="flex flex-col md:flex-row gap-6 p-6 items-center justify-center">
+        <Sidebar />
+        <Calculator />
+      </div>
+    </DndProvider>
   );
 };
 
