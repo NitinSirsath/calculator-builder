@@ -6,9 +6,9 @@ const Sidebar = () => {
       <h2 className="text-xl font-semibold text-gray-800 mb-4 text-center">
         Drag Components
       </h2>
-      <div style={{ padding: "10px" }} className="flex flex-col gap-3">
+      <div className="flex flex-col gap-3">
         <DraggableComponent id="display" type="display">
-          <div className="p-8 bg-gray-200 rounded-lg text-center cursor-pointer hover:bg-gray-300 transition-all shadow-md">
+          <div className="p-2 bg-gray-200 rounded-lg text-center cursor-pointer hover:bg-gray-300 transition-all shadow-md">
             <span className="font-medium text-gray-700">Display</span>
           </div>
         </DraggableComponent>
@@ -38,9 +38,9 @@ const Sidebar = () => {
               type="button"
               label={label}
             >
-              <div className="p-3 bg-blue-500 text-white rounded-lg text-center cursor-pointer hover:bg-blue-600 transition-all shadow-md font-semibold text-lg">
+              <button className="p-3 w-full bg-blue-500 text-white rounded-lg text-center cursor-pointer hover:bg-blue-600 transition-all shadow-md font-semibold text-lg">
                 {label}
-              </div>
+              </button>
             </DraggableComponent>
           ))}
         </div>

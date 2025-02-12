@@ -54,13 +54,13 @@ const DraggableButton: React.FC<DraggableButtonProps> = ({
       className="relative"
     >
       <button
-        className="bg-blue-500 text-white p-4 rounded-lg shadow-md w-full text-lg font-semibold hover:bg-blue-600 transition-all"
+        className="p-3 w-full bg-blue-500 text-white rounded-lg text-center cursor-pointer hover:bg-blue-600 transition-all shadow-md font-semibold text-lg"
         onClick={handleClick}
       >
         {label}
       </button>
       <button
-        className="absolute -top-1 -right-1 bg-red-500 text-white text-xs w-4 px-2 py-1 rounded-full hover:bg-red-600 transition-all"
+        className="absolute -top-1 -right-1 bg-red-500 text-white text-xs px-1 rounded-full hover:bg-red-600 transition-all"
         onClick={() => removeComponent(id)}
       >
         X
