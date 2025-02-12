@@ -1,8 +1,8 @@
 import DraggableComponent from "./DraggableComponent";
 
-const Sidebar: React.FC = () => {
+const Sidebar = () => {
   return (
-    <div className="p-6 border border-gray-200 rounded-lg w-72 bg-white/80 shadow-xl backdrop-blur-lg">
+    <div className="p-2 border border-gray-200 rounded-lg w-80 bg-white/80 shadow-xl backdrop-blur-lg">
       <h2 className="text-xl font-semibold text-gray-800 mb-4 text-center">
         Drag Components
       </h2>
