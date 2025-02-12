@@ -4,7 +4,7 @@ import DraggableButton from "./DraggableButton";
 import { motion, AnimatePresence } from "framer-motion";
 import useCalculatorStore from "../../../services/store/calculator/calculatorStore";
 
-const Calculator: React.FC = () => {
+const Calculator = () => {
   const { components, addComponent } = useCalculatorStore();
 
   const [{ isOver }, drop] = useDrop({

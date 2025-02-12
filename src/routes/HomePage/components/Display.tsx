@@ -1,6 +1,6 @@
 import useCalculatorStore from "../../../services/store/calculator/calculatorStore";
 
-const Display: React.FC = () => {
+const Display = () => {
   const { expression, result } = useCalculatorStore();
 
   return (
