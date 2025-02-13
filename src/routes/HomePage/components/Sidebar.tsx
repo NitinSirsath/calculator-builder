@@ -1,3 +1,4 @@
+import CustomButton from "../../../components/custom/CustomButton";
 import DraggableComponent from "./DraggableComponent";
 
 const Sidebar = () => {
@@ -32,9 +33,7 @@ const Sidebar = () => {
               type="button"
               label={label}
             >
-              <button className="p-3 w-full bg-blue-500 text-white rounded-lg text-center cursor-pointer hover:bg-blue-600 transition-all shadow-md font-semibold text-lg">
-                {label}
-              </button>
+              <CustomButton>{label}</CustomButton>
             </DraggableComponent>
           ))}
         </div>

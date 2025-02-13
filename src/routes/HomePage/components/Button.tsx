@@ -1,3 +1,4 @@
+import CustomButton from "../../../components/custom/CustomButton";
 import useCalculatorStore from "../../../services/store/calculator/calculatorStore";
 
 interface ButtonProps {
@@ -19,12 +20,9 @@ const Button: React.FC<ButtonProps> = ({ label }) => {
   };
 
   return (
-    <button
-      className="bg-blue-500 text-white p-3 rounded-md shadow-md w-full text-lg"
-      onClick={handleClick}
-    >
+    <CustomButton handleClick={handleClick} customStyles={"bg-red-500"}>
       {label}
-    </button>
+    </CustomButton>
   );
 };
 
