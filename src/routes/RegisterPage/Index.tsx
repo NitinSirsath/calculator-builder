@@ -21,7 +21,7 @@ import InputAdornment from "@mui/material/InputAdornment";
 import { createTheme } from "@mui/material/styles";
 import useRegisterPage from "./hooks/useRegisterPage";
 import styles from "../LoginPage/loginPage.module.css";
-import companyLogo from "../../assets/react.svg";
+import companyLogo from "../../assets/companyLogo.avif";
 import registerBG from "../../assets/loginBG.svg";
 
 // Light theme configuration
@@ -76,9 +76,13 @@ const RegisterPage: React.FC = () => {
           >
             <Container component="main" maxWidth="xs">
               <div style={{ display: "flex", gap: "10px", alignItems: "end" }}>
-                <img alt="Company Logo" src={companyLogo} height={30} />{" "}
+                <img
+                  alt="Company Logo"
+                  src={companyLogo}
+                  style={{ height: "30px" }}
+                />{" "}
                 <Typography variant="body1" color="textPrimary">
-                  React Project Template
+                  React Calculator Builder
                 </Typography>
               </div>
               {registerError && (

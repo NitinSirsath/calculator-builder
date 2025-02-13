@@ -19,7 +19,7 @@ import {
 import InputAdornment from "@mui/material/InputAdornment";
 import { createTheme } from "@mui/material/styles";
 import styles from "./loginPage.module.css";
-import companyLogo from "../../assets/react.svg";
+import companyLogo from "../../assets/companyLogo.avif";
 import loginBG from "../../assets/loginBG.svg";
 import useLoginPage from "./hooks/useLoginPage";
 import { useNavigate } from "react-router-dom";
@@ -85,9 +85,13 @@ const LoginPage: React.FC = () => {
           >
             <Container component="main" maxWidth="xs">
               <div style={{ display: "flex", gap: "10px", alignItems: "end" }}>
-                <img alt="Company Logo" src={companyLogo} height={30} />{" "}
+                <img
+                  alt="Company Logo"
+                  src={companyLogo}
+                  style={{ height: "30px" }}
+                />{" "}
                 <Typography variant="body1" color="textPrimary">
-                  React Project Template
+                  React Calculator Builder
                 </Typography>
               </div>
               {loginError && (
