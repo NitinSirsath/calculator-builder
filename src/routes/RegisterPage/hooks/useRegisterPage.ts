@@ -28,7 +28,7 @@ const useRegisterPage = () => {
     rememberMe: false,
   });
   const [showPassword, setShowPassword] = useState(false);
-  const [registerError, setRegisterError] = useState<string | null>(null);
+  const [registerError] = useState<string | null>(null);
 
   // Form submission handler
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
