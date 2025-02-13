@@ -14,6 +14,7 @@ import LoginPage from "./LoginPage/Index";
 import HomePage from "./HomePage/Index";
 import NotFoundPage from "./404Page/NotFoundPage";
 import RegisterPage from "./RegisterPage/Index";
+import AboutMe from "./about/Index";
 
 const AppRouter = () => {
   const { isLoggedIn } = useAuthStore();
@@ -52,6 +53,14 @@ const AppRouter = () => {
           element={
             <ProtectedRoutes>
               <HomePage />
+            </ProtectedRoutes>
+          }
+        />
+        <Route
+          path="/about"
+          element={
+            <ProtectedRoutes>
+              <AboutMe />
             </ProtectedRoutes>
           }
         />

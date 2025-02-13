@@ -1,26 +1,29 @@
 import * as React from "react";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
-import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
-import Tooltip from "@mui/material/Tooltip";
-import MenuItem from "@mui/material/MenuItem";
-import { removeUserData } from "../../../services/localStorage/authUtils";
-import { useAuthStore } from "../../../services/store/auth/authStore";
+import {
+  AppBar,
+  Box,
+  Toolbar,
+  IconButton,
+  Typography,
+  Menu,
+  Container,
+  Avatar,
+  Tooltip,
+  MenuItem,
+  Stack,
+  Button,
+} from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import useThemeStore from "../../../services/store/theme/themeStore";
+import { removeUserData } from "../../../services/localStorage/authUtils";
+import { useAuthStore } from "../../../services/store/auth/authStore";
 import companyLogo from "../../../assets/companyLogo.avif";
-import { Stack } from "@mui/material";
 
 const settings = ["Profile", "Logout"];
 
-function ResponsiveAppBar() {
+const ResponsiveAppBar = () => {
   const { setLoggedOut } = useAuthStore();
   const { darkMode, toggleDarkMode } = useThemeStore();
   const navigate = useNavigate();
@@ -48,50 +51,64 @@ function ResponsiveAppBar() {
   const handleThemeMode = () => {
     toggleDarkMode();
   };
+
   return (
     <AppBar position="static" sx={{ borderRadius: 0 }}>
-      <Container
-        sx={{
-          minWidth: "100%",
-        }}
-      >
+      <Container sx={{ minWidth: "100%" }}>
         <Toolbar
           sx={{ display: "flex", justifyContent: "space-between" }}
           disableGutters
         >
-          <Box>
+          {/* Company Logo */}
+          <Box sx={{ display: "flex", alignItems: "center" }}>
             <img
               src={companyLogo}
-              style={{ height: "40px" }}
-              alt={"Helpee"}
+              style={{ height: "40px", cursor: "pointer" }}
+              alt="Helpee"
               loading="lazy"
+              onClick={() => navigate("/")}
             />
           </Box>
 
-          <Stack direction={"row"}>
-            <Box mr={2}>
-              <Tooltip
-                enterDelay={500}
-                leaveDelay={300}
-                title={darkMode ? "Turn on light mode" : "Turn on dark mode"}
+          {/* Navigation Links */}
+
+          {/* Right Section (Dark Mode + User Menu) */}
+          <Stack direction={"row"} spacing={2} alignItems="center">
+            <Stack sx={{ marginLeft: "1rem" }} direction={"row"} spacing={1}>
+              <Button color="inherit" onClick={() => navigate("/")}>
+                Home
+              </Button>
+              <Button color="inherit" onClick={() => navigate("/about")}>
+                About Me
+              </Button>
+            </Stack>
+            {/* Dark Mode Toggle */}
+            <Tooltip
+              enterDelay={500}
+              leaveDelay={300}
+              title={darkMode ? "Turn on light mode" : "Turn on dark mode"}
+            >
+              <IconButton
+                onClick={handleThemeMode}
+                color="inherit"
+                sx={{ fontSize: "1.2rem" }}
               >
-                <IconButton
-                  onClick={handleThemeMode}
-                  color="inherit"
-                  sx={{ fontSize: "1.2rem" }}
-                >
-                  {darkMode ? (
-                    <DarkModeIcon fontSize="small" />
-                  ) : (
-                    <LightModeIcon fontSize="small" />
-                  )}
-                </IconButton>
-              </Tooltip>
-            </Box>
+                {darkMode ? (
+                  <DarkModeIcon fontSize="small" />
+                ) : (
+                  <LightModeIcon fontSize="small" />
+                )}
+              </IconButton>
+            </Tooltip>
+
+            {/* User Avatar Menu */}
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                  <Avatar
+                    alt="User Profile"
+                    src="/static/images/avatar/2.jpg"
+                  />
                 </IconButton>
               </Tooltip>
               <Menu
@@ -127,5 +144,6 @@ function ResponsiveAppBar() {
       </Container>
     </AppBar>
   );
-}
+};
+
 export default ResponsiveAppBar;
