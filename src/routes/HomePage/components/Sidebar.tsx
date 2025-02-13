@@ -7,12 +7,6 @@ const Sidebar = () => {
         Drag Components
       </h2>
       <div className="flex flex-col gap-3">
-        <DraggableComponent id="display" type="display">
-          <div className="p-2 bg-gray-200 rounded-lg text-center cursor-pointer hover:bg-gray-300 transition-all shadow-md">
-            <span className="font-medium text-gray-700">Display</span>
-          </div>
-        </DraggableComponent>
-
         <div className="grid grid-cols-4 gap-3">
           {[
             "7",
