@@ -1,26 +1,10 @@
-import { useDrop } from "react-dnd";
 import Display from "./Display";
 import DraggableButton from "./DraggableButton";
 import { motion, AnimatePresence } from "framer-motion";
-import useCalculatorStore from "../../../services/store/calculator/calculatorStore";
+import useCalculator from "../hooks/useCalculator";
 
 const Calculator = () => {
-  const { components, addComponent } = useCalculatorStore();
-
-  const [{ isOver }, drop] = useDrop({
-    accept: "COMPONENT",
-    drop: (item: { id: number; type: string; label?: string }) => {
-      addComponent({
-        id: Date.now(),
-        type: item.type as "button",
-        label: item.label ?? "?",
-      });
-    },
-    collect: (monitor) => ({
-      isOver: !!monitor.isOver(),
-    }),
-  });
-
+  const { components, isOver, drop } = useCalculator();
   return (
     <motion.div
       className="p-6 border border-gray-200 rounded-lg w-80 min-h-[350px] bg-white/80 shadow-xl backdrop-blur-lg"
