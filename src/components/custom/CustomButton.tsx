@@ -1,4 +1,5 @@
 import React from "react";
+import { useTheme } from "@mui/material/styles";
 
 interface IProps {
   children: React.ReactNode;
@@ -10,18 +11,6 @@ interface IProps {
   disabled?: boolean;
 }
 
-const variantStyles = {
-  primary: "bg-blue-500 hover:bg-blue-600 text-white",
-  secondary: "bg-gray-500 hover:bg-gray-600 text-white",
-  danger: "bg-red-500 hover:bg-red-600 text-white",
-};
-
-const sizeStyles = {
-  small: "p-2 text-sm",
-  medium: "p-3 text-md",
-  large: "p-4 text-lg",
-};
-
 const CustomButton: React.FC<IProps> = ({
   children,
   handleClick,
@@ -31,6 +20,27 @@ const CustomButton: React.FC<IProps> = ({
   isLoading = false,
   disabled = false,
 }) => {
+  const theme = useTheme();
+  const isDarkMode = theme.palette.mode === "dark";
+
+  const variantStyles = {
+    primary: isDarkMode
+      ? "bg-gray-800 hover:bg-blue-700 text-white"
+      : "bg-blue-500 hover:bg-blue-600 text-white",
+    secondary: isDarkMode
+      ? "bg-gray-700 hover:bg-gray-600 text-white"
+      : "bg-gray-500 hover:bg-gray-600 text-white",
+    danger: isDarkMode
+      ? "bg-red-600 hover:bg-red-700 text-white"
+      : "bg-red-500 hover:bg-red-600 text-white",
+  };
+
+  const sizeStyles = {
+    small: "px-3 py-1 text-sm",
+    medium: "px-4 py-2 text-md",
+    large: "px-5 py-3 text-lg",
+  };
+
   return (
     <button
       className={`
@@ -39,6 +49,8 @@ const CustomButton: React.FC<IProps> = ({
         rounded-lg text-center cursor-pointer transition-all shadow-md font-semibold
         disabled:opacity-50 disabled:cursor-not-allowed
         flex items-center justify-center gap-2
+        active:scale-95 
+        ${isDarkMode ? "shadow-lg" : "shadow-md"}
         ${customStyles}
       `}
       onClick={handleClick}

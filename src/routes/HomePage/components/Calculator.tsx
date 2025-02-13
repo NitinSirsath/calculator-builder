@@ -2,42 +2,64 @@ import Display from "./Display";
 import DraggableButton from "./DraggableButton";
 import { motion, AnimatePresence } from "framer-motion";
 import useCalculator from "../hooks/useCalculator";
+import { useTheme } from "@mui/material/styles";
+import DarkModeWrapper from "../../../components/theme/DarkModeWrapper";
 
 const Calculator = () => {
   const { components, isOver, drop } = useCalculator();
+  const theme = useTheme();
+  const isDarkMode = theme.palette.mode === "dark";
+
   return (
-    <motion.div
-      className="p-6 border border-gray-200 rounded-lg w-80 min-h-[350px] bg-white/80 shadow-xl backdrop-blur-lg"
-      initial={{ opacity: 0, scale: 0.95 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.3 }}
-    >
-      <h2 className="text-xl font-semibold text-gray-800 mb-4 text-center">
-        Your Calculator
-      </h2>
-      <div
-        ref={drop}
-        className={`p-4 min-h-[250px] rounded-lg ${
-          isOver ? "bg-gray-200" : "bg-white"
-        } shadow-inner`}
+    <DarkModeWrapper>
+      <motion.div
+        className={`p-6 border border-gray-700 rounded-lg w-80 min-h-[350px] shadow-xl backdrop-blur-lgtransition-all
+      `}
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.3 }}
       >
-        <Display />
-        <motion.div className="grid grid-cols-4 gap-3 mt-4">
-          <AnimatePresence>
-            {components.map((component, index) =>
-              component.type === "button" ? (
-                <DraggableButton
-                  key={component.id}
-                  id={component.id}
-                  label={component.label!}
-                  index={index}
-                />
-              ) : null
-            )}
-          </AnimatePresence>
-        </motion.div>
-      </div>
-    </motion.div>
+        {/* Title */}
+        <h2 className="text-xl font-semibold mb-4 text-center tracking-wide">
+          Calculator
+        </h2>
+
+        {/* Drop Zone */}
+        <div
+          ref={drop}
+          className={`p-4 min-h-[250px] rounded-lg shadow-inner transition-all
+          ${
+            isOver
+              ? isDarkMode
+                ? "bg-gray-800"
+                : "bg-gray-200"
+              : isDarkMode
+              ? "bg-gray-900"
+              : "bg-white"
+          }
+        `}
+        >
+          {/* Display Screen */}
+          <Display />
+
+          {/* Buttons Grid */}
+          <motion.div className="grid grid-cols-4 gap-3 mt-4">
+            <AnimatePresence>
+              {components.map((component, index) =>
+                component.type === "button" ? (
+                  <DraggableButton
+                    key={component.id}
+                    id={component.id}
+                    label={component.label!}
+                    index={index}
+                  />
+                ) : null
+              )}
+            </AnimatePresence>
+          </motion.div>
+        </div>
+      </motion.div>
+    </DarkModeWrapper>
   );
 };
 
