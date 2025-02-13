@@ -81,7 +81,9 @@ const useLoginPage = () => {
       const users = JSON.parse(localStorage.getItem("users") || "[]");
 
       const findUser = users.find(
-        (user: UserListType) => user.email === formData.username
+        (user: UserListType) =>
+          user.email.toLocaleLowerCase() ===
+          formData.username.toLocaleLowerCase()
       );
 
       if (!findUser) {
@@ -92,7 +94,8 @@ const useLoginPage = () => {
 
       const userExists = users.find(
         (user: UserListType) =>
-          user.email === formData.username &&
+          user.email.toLocaleLowerCase() ===
+            formData.username.toLocaleLowerCase() &&
           user.password === formData.password
       );
 
