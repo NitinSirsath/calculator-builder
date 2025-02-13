@@ -20,7 +20,7 @@ Follow these steps to install and run the app:
 
 ```sh
 git clone https://github.com/nitinsirsath/calculator-builder.git
-cd timerApp
+cd calculator-builder
 ```
 
 Step 2: Install Dependencies
