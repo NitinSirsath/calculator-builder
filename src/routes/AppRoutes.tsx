@@ -15,6 +15,7 @@ import HomePage from "./HomePage/Index";
 import NotFoundPage from "./404Page/NotFoundPage";
 import RegisterPage from "./RegisterPage/Index";
 import AboutMe from "./about/Index";
+import StartUpAlert from "../components/alert/StartUpAlert";
 
 const AppRouter = () => {
   const { isLoggedIn } = useAuthStore();
@@ -29,6 +30,7 @@ const AppRouter = () => {
 
   return (
     <AppLayout>
+      <StartUpAlert />
       <SnackbarActions />
       <BackdropLoader />
       <Routes>
