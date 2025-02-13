@@ -23,7 +23,7 @@ export default function StartUpAlert() {
     <Snackbar
       anchorOrigin={{ vertical, horizontal }}
       open={open}
-      autoHideDuration={10000}
+      autoHideDuration={6000}
       onClose={handleClose}
     >
       <Alert
