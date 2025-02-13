@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
-import { useDrag, useDrop } from "react-dnd";
-import useCalculatorStore from "../../../services/store/calculator/calculatorStore";
+import useDragButton from "../hooks/useDragButton";
 
 interface DraggableButtonProps {
   id: number;
@@ -13,38 +12,11 @@ const DraggableButton: React.FC<DraggableButtonProps> = ({
   label,
   index,
 }) => {
-  const {
-    moveComponent,
-    removeComponent,
-    updateExpression,
-    evaluateExpression,
-    clearExpression,
-  } = useCalculatorStore();
-
-  const [, ref] = useDrag({
-    type: "BUTTON",
-    item: { id, index },
+  const { removeComponent, ref, drop, handleClick } = useDragButton({
+    id,
+    label,
+    index,
   });
-
-  const [, drop] = useDrop({
-    accept: "BUTTON",
-    hover: (draggedItem: { index: number }) => {
-      if (draggedItem.index !== index) {
-        moveComponent(draggedItem.index, index);
-        draggedItem.index = index;
-      }
-    },
-  });
-
-  const handleClick = () => {
-    if (label === "=") {
-      evaluateExpression();
-    } else if (label === "C") {
-      clearExpression();
-    } else {
-      updateExpression(label);
-    }
-  };
 
   return (
     <motion.div
