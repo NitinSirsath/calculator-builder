@@ -69,6 +69,7 @@ const AboutMe = () => {
           >
             <ChipWithIcon icon={<Code />} label="ReactJS / TypeScript" />
             <ChipWithIcon icon={<Code />} label="React Native" />
+            <ChipWithIcon icon={<Code />} label="NodeJS / ExpressJs" />
             <ChipWithIcon icon={<Code />} label="Zustand / MUI" />
             <ChipWithIcon icon={<Code />} label="Github/Git" />
           </Stack>
