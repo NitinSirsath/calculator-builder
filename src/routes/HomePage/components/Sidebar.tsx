@@ -8,7 +8,7 @@ const Sidebar = () => {
 
   return (
     <div
-      className={`p-4 border border-gray-700 rounded-lg w-72 shadow-xl 
+      className={`p-4 border  rounded-lg w-72 shadow-xl 
         ${isDarkMode ? "bg-gray-900 text-gray-100" : "bg-white text-gray-900"}
         transition-all backdrop-blur-lg`}
     >

@@ -13,7 +13,7 @@ const Calculator = () => {
   return (
     <DarkModeWrapper>
       <motion.div
-        className={`p-6 border border-gray-700 rounded-lg w-80 min-h-[350px] shadow-xl backdrop-blur-lgtransition-all
+        className={`p-3 border rounded-lg w-80 min-h-[350px] shadow-xl backdrop-blur-lgtransition-all
       `}
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -35,7 +35,7 @@ const Calculator = () => {
                 : "bg-gray-200"
               : isDarkMode
               ? "bg-gray-900"
-              : "bg-white"
+              : "bg-gray-200"
           }
         `}
         >

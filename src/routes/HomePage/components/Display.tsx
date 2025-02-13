@@ -7,7 +7,7 @@ const Display = () => {
   return (
     <DarkModeWrapper>
       <div
-        className={`w-full p-4 rounded-lg text-right text-2xl font-semibold shadow-inner transition-all 
+        className={`w-full p-4 text-right text-2xl font-semibold shadow-inner transition-all 
       `}
       >
         {expression || result}

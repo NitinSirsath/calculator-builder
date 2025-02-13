@@ -25,7 +25,7 @@ const CustomButton: React.FC<IProps> = ({
 
   const variantStyles = {
     primary: isDarkMode
-      ? "bg-gray-800 hover:bg-blue-700 text-white"
+      ? "bg-gray-800 text-gray-100 hover:bg-blue-700 text-white"
       : "bg-blue-500 hover:bg-blue-600 text-white",
     secondary: isDarkMode
       ? "bg-gray-700 hover:bg-gray-600 text-white"

@@ -9,7 +9,7 @@ const DarkModeWrapper = ({ children }: { children: ReactNode }) => {
       className={`
     ${
       isDarkMode
-        ? "bg-gray-800 text-gray-100 border border-gray-700"
+        ? "bg-gray-900 text-gray-100 border border-gray-700"
         : "bg-gray-100 text-gray-800"
     }
   `}
