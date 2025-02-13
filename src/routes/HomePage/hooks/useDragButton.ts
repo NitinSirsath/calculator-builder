@@ -1,5 +1,6 @@
 import useCalculatorStore from "../../../services/store/calculator/calculatorStore";
 import { useDrag, useDrop } from "react-dnd";
+import { useToastStore } from "../../../services/store/snackbar/toastStore";
 
 interface DraggableButtonProps {
   id: number;
@@ -15,6 +16,7 @@ const useDragButton = ({ id, label, index }: DraggableButtonProps) => {
     evaluateExpression,
     clearExpression,
   } = useCalculatorStore();
+  const { showToast } = useToastStore();
 
   const [, ref] = useDrag({
     type: "BUTTON",
@@ -34,8 +36,10 @@ const useDragButton = ({ id, label, index }: DraggableButtonProps) => {
   const handleClick = () => {
     if (label === "=") {
       evaluateExpression();
+      showToast("Expression result", "success");
     } else if (label === "C") {
       clearExpression();
+      showToast("Expression cleared", "neutral");
     } else {
       updateExpression(label);
     }

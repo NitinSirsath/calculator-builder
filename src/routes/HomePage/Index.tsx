@@ -11,7 +11,6 @@ const HomePage = () => {
   useEffect(() => {
     setIsTouchDevice("ontouchstart" in window || navigator.maxTouchPoints > 0);
   }, []);
-
   return (
     <DndProvider backend={isTouchDevice ? TouchBackend : HTML5Backend}>
       <div className="flex flex-col md:flex-row gap-6 p-6 items-center justify-center">
