@@ -43,19 +43,35 @@ const useCalculatorStore = create<CalculatorState>()(
         })),
       updateExpression: (value) =>
         set((state) => ({
-          expression: state.expression + value,
+          expression:
+            state.result && state.result !== "0"
+              ? state.result + state.expression + value
+              : state.expression + value,
+          result: state.result && state.result !== "0" ? "0" : state.result,
         })),
       evaluateExpression: () =>
         set((state) => {
           try {
-            return {
-              result: eval(state.expression).toString(),
-              expression: "",
-            };
-          } catch (error) {
+            const trimmedExpression = state.expression.trim();
+
+            // Handle empty expression
+            if (trimmedExpression === "") {
+              return { result: state.result, expression: state.expression };
+            }
+
+            // Prevent evaluation if expression ends with an operator
+            if (/[+\-*/]$/.test(trimmedExpression)) {
+              return { result: "Error", expression: "" };
+            }
+
+            // Evaluate valid expressions
+            const evaluatedResult = eval(trimmedExpression).toString();
+            return { result: evaluatedResult, expression: "" };
+          } catch {
             return { result: "Error", expression: "" };
           }
         }),
+
       clearExpression: () => set({ expression: "", result: "0" }),
       moveComponent: (dragIndex, hoverIndex) =>
         set((state) => {
